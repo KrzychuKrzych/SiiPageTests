@@ -6,7 +6,7 @@ import pl.testystron.sii.pages.HomePage;
 public class HomePageTest extends BaseTest {
 
     @Test
-    public void quicktest() {
-        new HomePage(driver).openAnotherPage();
+    public void quickTest() {
+        new HomePage(driver).openWhoWeAreSide();
     }
 }

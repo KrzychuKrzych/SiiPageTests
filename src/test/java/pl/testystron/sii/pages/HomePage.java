@@ -1,5 +1,6 @@
 package pl.testystron.sii.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,12 @@ public class HomePage {
     @FindBy(partialLinkText = "Siła")
     private WebElement silaSi;
 
+    @FindBy(xpath = "//*[@id='menu-menu-gorne-main-menu']/li[8]")
+    private WebElement searchButton;
+
+    @FindBy(xpath = "//input[@class='sii-m-btn-drop-down__input js-menu-content-search__input -invert']")
+    private WebElement sendingQuestionText;
+
     private WebDriver driver;
 
     public HomePage(WebDriver driver) {
@@ -20,10 +27,15 @@ public class HomePage {
         this.driver = driver;
     }
 
-    public WhoWeAre openAnotherPage() {
+    public WhoWeArePage openWhoWeAreSide() {
         kimJestesmy.click();
         silaSi.click();
-        return new WhoWeAre(driver);
+        return new WhoWeArePage(driver);
     }
 
+    public SearchingPage sendYourQuestion(String keyword) {
+        searchButton.click();
+        sendingQuestionText.sendKeys(keyword, Keys.ENTER);
+        return new SearchingPage(driver);
+    }
 }
